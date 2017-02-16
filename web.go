@@ -9,7 +9,7 @@ import (
 )
 
 func randomCage() (string) {
-  i := []string{"Lh2VJ4O.gif", "0fQk5qs.gif", "GKi89OO.gif", "PJLRxyQ.gif", "Z0CfLVA.gif", "rVs2s44.gif", "blCmYiu.gif", "QtFbQBu.gif", "s50GnoI.gif", "dlqj03p.gif"}
+  i := []string{"Lh2VJ4O.gif", "0fQk5qs.gif", "GKi89OO.gif", "PJLRxyQ.gif", "Z0CfLVA.gif", "rVs2s44.gif", "blCmYiu.gif", "QtFbQBu.gif", "s50GnoI.gif", "dlqj03p.gif", "qsxHrHF.gif", "FVndoUj.gif", "ivF8q8L.gif", "ynrXDiD.gif", "sZA29Pe.gif", "hm6BVL3.gif", "Pnj9hiF.gif", "4MbTxN9.gif", "Zx4RYfV.gif", "hvRAEGF.gif"}
   return i[rand.Intn(len(i))]
 }
 
