@@ -14,6 +14,7 @@ func randomCage() (string) {
 }
 
 func proxy(w http.ResponseWriter, r *http.Request) {
+  w.Header().Set("Cache-Control", "max-age=2")
   ghttp.Get(w, "http://i.imgur.com/" + randomCage())
 }
 
