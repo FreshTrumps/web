@@ -19,6 +19,7 @@ func proxy(w http.ResponseWriter, r *http.Request) {
 }
 
 func serve(w http.ResponseWriter, r *http.Request) {
+  w.Header().Set("Cache-Control", "max-age=2")
   w.Header().Set("Content-Type", "text/html")
   w.Write([]byte(html()))
 }
@@ -39,6 +40,6 @@ func main() {
   http.HandleFunc("/", proxy)
   http.HandleFunc("/random.gif", proxy)
   http.HandleFunc("/index.html", serve)
-  bind := fmt.Sprintf("%s:%s", "0.0.0.0", "80")
+  bind := fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT"))
   http.ListenAndServe(bind, nil)
 }
