@@ -14,7 +14,7 @@ func randomCage() (string) {
 }
 
 func proxy(w http.ResponseWriter, r *http.Request) {
-  w.Header().Set("Cache-Control", "max-age=3")
+  w.Header().Set("Cache-Control", "max-age=5")
   ghttp.Get(w, "http://i.imgur.com/" + randomCage())
 }
 
@@ -36,10 +36,12 @@ func html() (string) {
 }
 
 func main() {
+  fs := http.FileServer(http.Dir("static"))
   rand.Seed(823)
   http.HandleFunc("/", proxy)
   http.HandleFunc("/random.gif", proxy)
   http.HandleFunc("/index.html", serve)
+  http.HandleFunc("/static", fs)
   bind := fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT"))
   http.ListenAndServe(bind, nil)
 }
