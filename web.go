@@ -41,7 +41,7 @@ func main() {
   http.HandleFunc("/", proxy)
   http.HandleFunc("/random.gif", proxy)
   http.HandleFunc("/index.html", serve)
-  http.HandleFunc("/static", fs)
+  http.Handle("/static/", fs)
   bind := fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT"))
   http.ListenAndServe(bind, nil)
 }
