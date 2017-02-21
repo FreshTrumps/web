@@ -21,7 +21,6 @@ func proxy(w http.ResponseWriter, r *http.Request) {
 func main() {
   rand.Seed(823)
   http.HandleFunc("/", proxy)
-  http.HandleFunc("/random.gif", proxy)
   http.HandleFunc("/fresh.gif", proxy)
   bind := fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT"))
   http.ListenAndServe(bind, nil)
