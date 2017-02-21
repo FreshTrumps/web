@@ -18,30 +18,11 @@ func proxy(w http.ResponseWriter, r *http.Request) {
   ghttp.Get(w, "http://i.imgur.com/" + randomCage())
 }
 
-func serve(w http.ResponseWriter, r *http.Request) {
-  w.Header().Set("Cache-Control", "max-age=500")
-  w.Header().Set("Content-Type", "text/html")
-  w.Write([]byte(html()))
-}
-
-func html() (string) {
-  return `<html>
-<body>
-
-<h2>Spectacular Mountain</h2>
-<img src="." alt="Mountain View" style="width:304px;height:228px;">
-
-</body>
-</html>`
-}
-
 func main() {
-  fs := http.FileServer(http.Dir("static"))
   rand.Seed(823)
   http.HandleFunc("/", proxy)
   http.HandleFunc("/random.gif", proxy)
-  http.HandleFunc("/index.html", serve)
-  http.Handle("/static/", fs)
+  http.HandleFunc("/fresh.gif", proxy)
   bind := fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT"))
   http.ListenAndServe(bind, nil)
 }
